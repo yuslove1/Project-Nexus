@@ -1,4 +1,3 @@
-```markdown
 # JobNest  
 *A modern job board platform for seamless job searching and application.*  
 
