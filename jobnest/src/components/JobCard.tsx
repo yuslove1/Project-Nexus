@@ -3,6 +3,7 @@ import { JobContext } from "@/contexts/JobContext";
 import { Job } from "@/types/job";
 import { getTimeAgo } from "@/utils/getTimeAgo";
 import { Button } from "./common/Button";
+import Image from 'next/image';
 
 // Component props type definition
 interface JobCardProps {
@@ -20,16 +21,23 @@ export default function JobCard({ job }: JobCardProps) {
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
       <header className="flex justify-between items-center gap-4 pb-2 border-b-2 border-gray-200">
-        <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
-          <span className="text-gray-500 text-xl font-bold">
-            {job.company[0]}
-          </span>
+        <div className="w-15 overflow-hidden h-15 bg-gray-100 rounded-full flex items-center justify-center">
+          {job.picture ? (
+            <img
+              src={job.picture}
+              alt={job.company}
+              width={50}
+              height={50}
+              className="rounded-full"
+            />
+          )
+         : (<span className="text-gray-500 text-xl font-bold">{job.company[0]}</span>)}
         </div>
 
         <div className="flex gap-1 h-8 items-center justify-center">
           {/* Conditional rendering for time ago */}
           {job.posted_at && (
-            <div className="text-xm italic py-1 px-1 border rounded-lg">
+            <div className="text-sm italic py-1 px-1 border rounded">
               {getTimeAgo(job.posted_at)}
             </div>
           )}
