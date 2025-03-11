@@ -13,7 +13,7 @@ export default function Navbar() {
 
           {/* Navigation Links */}
           <div className="flex flex-wrap justify-around w-full sm:w-auto items-center gap-4 sm:gap-6 font-semibold sm:text-lg">
-            <Link href="/home" className="text-gray-400 hover:text-blue-600">
+            <Link href="/" className="text-gray-400 hover:text-blue-600">
               Home
             </Link>
             <Link href="/post-job" className="text-gray-400 hover:text-blue-600">
