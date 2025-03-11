@@ -3,7 +3,7 @@ export interface FilterContextType {
     filterCategories: Category[];
     setFilterLocations: (locations: string[]) => void;
     setFilterCategories: (categories: Category[]) => void;
-
+    setFilters: (category: Category)
 }
 
 export interface Category {
