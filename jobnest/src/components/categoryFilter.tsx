@@ -2,7 +2,6 @@ import React, { useContext, useCallback, useEffect } from "react";
 import { FilterContext } from "@/contexts/FilterContext";
 import { JobContext } from "@/contexts/JobContext";
 import { jobService } from "@/services/jobs";
-import { pages } from "next/dist/build/templates/app-page";
 
 const CategoryFilter: React.FC = () => {
   const { filterCategories } = useContext(FilterContext);

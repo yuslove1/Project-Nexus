@@ -1,5 +1,4 @@
 import React from "react";
-import { BG } from "@/constants/data";
 
 const HeadBadge: React.FC = () => {
   return (

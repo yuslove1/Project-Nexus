@@ -1,7 +1,6 @@
 "use client";
 import { createContext, useState, useEffect, ReactNode, useCallback } from "react";
 import { jobService } from "@/services/jobs";
-import { Job, FilterParams, JobContextType, PaginationProps } from "@/types/job";
 
 // Create a context for the job data
 export const JobContext = createContext<JobContextType>({

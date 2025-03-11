@@ -1,7 +1,6 @@
 import { useContext, useEffect } from "react";
 import { FilterContext } from "@/contexts/FilterContext";
 import { JobContext } from "@/contexts/JobContext"; // Import the JobContext
-import { JobList } from "@/components/JobList";
 import JobCard from "@/components/JobCard";
 import HeadBadge from "@/components/Headbadge";
 
@@ -18,7 +17,7 @@ const SearchResult: React.FC = () => {
   return (
     <main>
       <HeadBadge />      
-      <section>
+      <section className="container">
         {jobs.map((job) => (
           <JobCard key={job.id} job={job} />
         ))}

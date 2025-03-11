@@ -11,7 +11,7 @@ export const jobService = {
           }
           const response = await api.get("/job")
           return response.data;
-        } catch (Error: any) {
+        } catch (Error) {
           throw new Error("Failed to fetch jobs");
         }
       },
@@ -34,7 +34,7 @@ export const jobService = {
       try {
         const response = await api.get(`category/${id}/jobs/?page=${nextPage}`);
         return response.data;
-      } catch (Error: any) {
+      } catch (Error) {
         throw new Error("Failed to fetch category jobs");
       }
   },
