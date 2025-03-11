@@ -7,6 +7,7 @@ export interface FilterContextType {
 }
 
 export interface Category {
+    jobTitle: string;
     id: string;
     name: string;
     industry: string;

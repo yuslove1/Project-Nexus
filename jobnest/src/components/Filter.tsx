@@ -21,7 +21,7 @@ const Filter: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setFilters({
-      search: formState.jobTitle,
+      jobTitle: formState.jobTitle,
       location: formState.location,
       category: formState.category,
       experience: formState.experience,
@@ -42,7 +42,7 @@ const Filter: React.FC = () => {
       experience: "",
     });
     setFilters({
-      search: "",
+      jobTitle: "",
       location: "",
       category: "",
       experience: "",
