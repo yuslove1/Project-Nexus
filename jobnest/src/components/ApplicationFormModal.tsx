@@ -5,7 +5,6 @@ import { Button } from "./common/Button";
 export default function ApplicationFormModal() {
   const {
     selectedJob,
-    setSelectedJob,
     isApplicationModalOpen,
     setIsApplicationModalOpen,
   } = useContext(JobContext);

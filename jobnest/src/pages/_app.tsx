@@ -1,4 +1,4 @@
-import { JobContext, JobProvider } from "@/contexts/JobContext";
+import { JobProvider } from "@/contexts/JobContext";
 import { FilterProvider } from "@/contexts/FilterContext";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";

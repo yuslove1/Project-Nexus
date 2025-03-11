@@ -7,7 +7,6 @@ import {
   ReactNode,
   useCallback,
 } from "react";
-import axios from "axios";
 import { FilterContextType } from "@/types/filter";
 import { FilterParams, Job } from "@/types/job";
 import { jobService } from "@/services/jobs";
@@ -31,7 +30,7 @@ const FilterProvider = ({ children }: { children: ReactNode }) => {
   const [filterLocations, setFilterLocations] = useState<FilterContextType[]>([]);
   const [filterCategories, setFilterCategories] = useState<FilterContextType[]>([]);
   // const [jobs, setJobs] = useState<Job[]>([]);
-  const [nextPage, setNextPage] = useState<string | null>(null);
+  // const [nextPage, setNextPage] = useState<string | null>(null);
   const [filters, setFilters] = useState<FilterParams>({
     title: "",
     category: "",

@@ -1,5 +1,3 @@
-import { ReactElement } from "react";
-
 export interface ButtonProps{
     btnStyle: string;
     btnText: string;

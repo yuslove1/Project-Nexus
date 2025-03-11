@@ -3,7 +3,6 @@ import { JobContext } from "@/contexts/JobContext";
 import { Job } from "@/types/job";
 import { getTimeAgo } from "@/utils/getTimeAgo";
 import { Button } from "./common/Button";
-import Image from 'next/image';
 
 // Component props type definition
 interface JobCardProps {

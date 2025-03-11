@@ -1,4 +1,4 @@
-import { React, useContext } from "react";
+import React from "react";
 import { JobList } from "@/components/JobList";
 import Hero from "@/components/Hero";
 import CategoryFilter from "@/components/categoryFilter";

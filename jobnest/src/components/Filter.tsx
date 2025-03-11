@@ -2,12 +2,10 @@ import { useContext, useState } from "react";
 import { Button } from "./common/Button";
 import { JOBEXPERIENCE } from "@/constants/JobFilter";
 import { FilterContext } from "@/contexts/FilterContext";
-import { JobContext } from "@/contexts/JobContext";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 const Filter: React.FC = () => {
-  const { filterLocations, filterCategories, filters, setFilters } = useContext(FilterContext);
+  const { filterLocations, setFilters } = useContext(FilterContext);
   // const { setFilters } = useContext(JobContext);
 
   const [formState, setFormState] = useState({

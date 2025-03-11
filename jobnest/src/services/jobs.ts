@@ -1,19 +1,17 @@
 import api from "./api";
 import axios from "axios";
-import { FilterParams } from "@/types/job";
-import { clientSideFilter } from "@/utils/clientSideFilter";
 
 
 export const jobService = {
-      getJobs: async (url: string, filters: FilterParams) => {
+      getJobs: async (url: string) => {
         try {
           if (url) {
             const response = await axios.get(url);
             return response.data
           }
-          const response = await api.get("/job");
+          const response = await api.get("/job")
           return response.data;
-        } catch (error) {
+        } catch (Error: any) {
           throw new Error("Failed to fetch jobs");
         }
       },
@@ -32,11 +30,11 @@ export const jobService = {
     }
   },
 
-    getCategoryJobs: async (id, nextPage: number) => {
+    getCategoryJobs: async (id:string, nextPage: number) => {
       try {
         const response = await api.get(`category/${id}/jobs/?page=${nextPage}`);
         return response.data;
-      } catch (error) {
+      } catch (Error: any) {
         throw new Error("Failed to fetch category jobs");
       }
   },

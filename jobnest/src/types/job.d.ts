@@ -9,7 +9,7 @@ export interface Job {
   category: string;
   type?: string;
   posted_at: string;
-  picture: string:
+  picture: string;
   is_active?: boolean; 
   experience?: "Entry" | "Mid" | "Senior";
 }
