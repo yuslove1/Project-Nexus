@@ -1,58 +1,18 @@
-
 import axios from "axios";
-import { Job, FilterParams } from "@/types/job";
-import { mockJobs } from "@/mocks/jobs";
-import { filterJobs } from "@/utils/filterJobs";
 
-// export const fetchJobs = async (filters?: FilterParams): Promise<Job[]> => {
-//     try {
-//         if(process.env.FILTER_MODE === "server"){
-//             //Server-side filtering
-//             const response = await axios.get<Job[]>("api/jobs", {params: filters});
-//             return response.data;
-//         } 
-//         //Client-side filtering
-//         await new Promise(resolve => setTimeout(resolve, 500)); //mock server delay time with 500ms
-//         return filterJobs(mockJobs, filters || {});
-//     }catch(error) {
-//         throw new Error("Failed to fetch jobs");
-//     }
-// };
+// Create an Axios instance with a base URL and default headers
+const api = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL, // Base URL from environment variables
+  headers: { "Content-Type": "application/json" }, // Default headers
+});
 
+// Add a request interceptor to include the auth token in headers
+api.interceptors.request.use(config => {
+  const token = localStorage.getItem("token"); // Get token from localStorage
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`; // Add token to headers
+  }
+  return config;
+});
 
-
-// type for error handling
-type ApiError = {
-    message: string;
-    code?: number;
-};
-
-export const fetchJobs = async (filters?: FilterParams): Promise<Job[]> => {
-    try {
-        if (process.env.NEXT_PUBLIC_FILTER_MODE === "server") { //if the filtering is at the backen
-            const response = await axios.get<Job[]>("/api/jobs", {
-                params: filters, validateStatus: (status) => status < 500
-            });
-
-            if (response.status >= 400) {
-                throw new Error(`API Error: ${response.statusText}`);
-            }
-            return response.data;
-        }
-
-        // Client-side filtering
-        await new Promise(resolve => setTimeout(resolve, 500)); //To mock the Api fetching delay of 500ms
-        return filterJobs(mockJobs, filters || {});
-        
-    } catch (error) {
-        let errorMessage = "Failed to fetch jobs";
-
-        if (axios.isAxiosError(error)) {
-            errorMessage = error.response?.data?.message || error.message;
-        } else if (error instanceof Error) {
-            errorMessage = error.message;
-        }
-
-        throw new Error(errorMessage);
-    }
-};
+export default api; // Export the configured Axios instance
