@@ -12,7 +12,7 @@ export const mockJobs: Job[] = [
     description: "Build responsive user interfaces using React and Next.js. Collaborate with product teams to deliver high-quality web applications.",
     salary: "$85,000 - $110,000",
     type: "Full-time",
-    createdAt: "2024-03-15"
+    posted_at: "2024-03-15"
   },
   {
     id: "2",
@@ -24,7 +24,7 @@ export const mockJobs: Job[] = [
     description: "Lead UX design for enterprise applications. Conduct user research and create wireframes/prototypes.",
     salary: "$95,000 - $130,000",
     type: "Contract",
-    createdAt: "2024-03-14"
+    posted_at: "2024-03-14"
   },
   {
     id: "3",
@@ -36,7 +36,7 @@ export const mockJobs: Job[] = [
     description: "Develop and execute digital marketing strategies. Manage social media campaigns and SEO optimization.",
     salary: "$75,000 - $90,000",
     type: "Full-time",
-    createdAt: "2024-03-13"
+    posted_at: "2024-03-13"
   },
   {
     id: "4",
@@ -48,7 +48,7 @@ export const mockJobs: Job[] = [
     description: "Develop scalable backend services using Node.js and TypeScript. Implement RESTful APIs and database optimizations.",
     salary: "$120,000 - $150,000",
     type: "Full-time",
-    createdAt: "2024-03-12"
+    posted_at: "2024-03-12"
   },
   {
     id: "5",
@@ -60,7 +60,7 @@ export const mockJobs: Job[] = [
     description: "Create visual assets for digital campaigns. Proficiency in Adobe Creative Suite required.",
     salary: "£30,000 - £40,000",
     type: "Part-time",
-    createdAt: "2024-03-11"
+    posted_at: "2024-03-11"
   },
   // Add more entries as needed
 ];
