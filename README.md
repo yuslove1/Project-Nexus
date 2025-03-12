@@ -49,7 +49,7 @@ JobNest is a responsive web app built for ALX Project Nexus (Frontend Developmen
 1. **Environment Variables**:  
    Create a `.env.local` file:  
    ```  
-   NEXT_PUBLIC_API_URL=http://localhost:3000/api/jobs  //Replace with your API 
+   NEXT_PUBLIC_API_URL=http://localhost:3000/api/job 
    ```  
 2. **Mock Data**:  
    Edit `src/mocks/jobs.ts` to add/update sample jobs.  
@@ -63,7 +63,7 @@ vercel deploy --prod
 
 ## **Collaboration**  
 - **Frontend**: Yusuf Adesina  
-- **Backend Partner**: ......  
+- **Backend Partner**: Temitope Olowosuyi
 
 ## **Evaluation Criteria**  
 - **Functionality**: API integration, filtering, responsive design.  
