@@ -5,7 +5,7 @@ import { FilterContext } from "@/contexts/FilterContext";
 import { useRouter } from "next/router";
 
 const Filter: React.FC = () => {
-  const { filterLocations, setFilters } = useContext(FilterContext);
+  const { filterLocations, filterCategories, setFilters } = useContext(FilterContext);
   // const { setFilters } = useContext(JobContext);
 
   const [formState, setFormState] = useState({
@@ -18,20 +18,21 @@ const Filter: React.FC = () => {
   const router = useRouter(); //nextjs router
 
   //handle filter submission
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+   
+    if (Object.values(formState).every((value) => value === "")) {
+      return "filter form can not be empty";
+    }
+
     e.preventDefault();
     setFilters({
-      jobTitle: formState.jobTitle,
+      title: formState.jobTitle,
       location: formState.location,
       category: formState.category,
       experience: formState.experience,
     });
-
-    if (Object.values(formState).every((value) => value === "")) {
-      return "filter form can not be empty";
-    }
     //redirect to search result page
-    router.push({ pathname: "search-result" });
+    router.push({ pathname: "search-result"});
   };
 
   const clearFilters = () => {
@@ -41,12 +42,12 @@ const Filter: React.FC = () => {
       category: "",
       experience: "",
     });
-    setFilters({
-      jobTitle: "",
-      location: "",
-      category: "",
-      experience: "",
-    });
+    // setFilters({
+    //   title: "",
+    //   location: "",
+    //   category: "",
+    //   experience: "",
+    // });
   };
 
   return (
@@ -92,7 +93,7 @@ const Filter: React.FC = () => {
                 />
               </div>
 
-              <div className="col-span-5 lg:col-span-3 grid-cols-2 gap-2 grid">
+              <div className="col-span-5 lg:col-span-3 grid-cols-3 gap-2 grid">
                 {/* Location */}
                 <div className="col-span-1">
                   <select
@@ -108,8 +109,8 @@ const Filter: React.FC = () => {
                   >
                     <option value="">All Locations</option>
                     {/* map over the locations from gotten from context */}
-                    {filterLocations?.map((location) => (
-                      <option key={location} value={location}>
+                    {filterLocations?.map((location:string, index) => (
+                      <option key={index} value={location}>
                         {location}
                       </option>
                     ))}
@@ -117,7 +118,7 @@ const Filter: React.FC = () => {
                 </div>
 
                 {/* category */}
-                {/* <div className="col-span-1">
+                 <div className="col-span-1">
                   <select
                     id="category"
                     value={formState.category}
@@ -132,12 +133,12 @@ const Filter: React.FC = () => {
                     <option value="">All Categories</option>
                   
                     {filterCategories?.map((category) => (
-                      <option key={category.id} value={category.id}>
+                      <option key={category.name} value={category.name}>
                         {category.name}
                       </option>
                     ))}
                   </select>
-                </div> */}
+                </div> 
 
                 {/* Experience */}
                 <div className="col-span-1">
@@ -170,12 +171,14 @@ const Filter: React.FC = () => {
             {/* Form Actions */}
             <div className="mt-6 grid grid-cols-3 gap-2">
               <div className="col-span-2">
-                <Button
+                <button
+                  className="w-full span-col-2 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg transition-colors duration-200"
+                  type="submit"> Search Jobs </button>
+                {/* <Button
                   btnText="Search Jobs"
                   btnStyle="w-full span-col-2 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg transition-colors duration-200"
                   type="submit"
-                  onBtnClick={handleSubmit}
-                />
+                /> */}
               </div>
 
               <Button
