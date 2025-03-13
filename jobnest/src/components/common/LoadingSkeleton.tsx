@@ -1,7 +1,7 @@
 export default function LoadingSkeleton() {
   return (
     <div className="space-y-4">
-      {[...Array(6)].map((_, i) => (
+      {[...Array(5)].map((_, i) => (
         <div key={i} className="bg-white p-6 rounded-lg shadow-sm">
           <div className="animate-pulse flex items-start gap-4">
             <div className="w-12 h-12 bg-gray-200 rounded-lg"></div>
