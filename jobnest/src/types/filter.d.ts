@@ -5,7 +5,7 @@ export interface FilterContextType {
     setFilterLocations: (locations: []) => void;
     setFilterCategories: (categories: Category[]) => void;
     setFilters: (category: FilterParams) => void;
-    fetchFilteredJobs: (filter: FilterParams) => void
+    fetchFilteredJobs: () => Promise<void>;
 }
 
 interface Category {

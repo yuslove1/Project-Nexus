@@ -3,6 +3,6 @@ export interface ButtonProps{
     btnText: string;
     disabled?: boolean;
     type?: "button" | "submit" | "reset";
-    onBtnClick?: (e: React.FormEvent<HTMLFormElement>) => void | React.ReactElement;
+    onBtnClick?: (e: MouseEventHandler<HTMLButtonElement>) => void | React.ReactElement;
   }
   
