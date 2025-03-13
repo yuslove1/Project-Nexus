@@ -1,16 +1,22 @@
 export interface FilterContextType {
-    filter: Category;
+    filters: FilterParams;
     filterLocations: string[];
     filterCategories: Category[];
-    setFilterLocations: (locations: string[]) => void;
+    setFilterLocations: (locations: []) => void;
     setFilterCategories: (categories: Category[]) => void;
-    setFilters: (category: Category) => void;
-   
+    setFilters: (category: FilterParams) => void;
+    fetchFilteredJobs: (filter: FilterParams) => void
 }
 
-export interface Category {
-    jobTitle: string;
+interface Category {
     id: string;
     name: string;
-    location: string;
+    industry: string;
+}
+
+export interface FilterParams {
+  title?: string;
+  category?: string;
+  location?: string;
+  experience?: string;
 }

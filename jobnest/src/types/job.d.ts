@@ -8,33 +8,30 @@ export interface Job {
   location: string;
   category: string;
   type?: string;
-  posted_at: string;
+  posted_at?: string;
   picture: string;
   is_active?: boolean; 
   experience?: "Entry" | "Mid" | "Senior";
 }
 
-export interface FilterParams {
-  title?: string;
-  category?: string;
-  location?: string;
-  experience?: string;
-}
-
-export type JobContextType = {
+export interface JobContextType {
   jobs: Job[];
+  fetchJobs: () => Promise<void>;
+  setJobs: React.Dispatch<React.SetStateAction<Job[]>>;
   loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   error: string | null;
-  filters: FilterParams;
-  setFilters: (filters: FilterParams) => void;
+  setError: React.Dispatch<React.SetStateAction<string | null>>;
+  fetchJobByCat: (id: string) => Promise<Job[]>; //
   selectedJob: Job | null;
-  setSelectedJob: (job: Job | null) => void;
+  setSelectedJob: React.Dispatch<React.SetStateAction<Job | null>>;
   isApplicationModalOpen: boolean;
-  setIsApplicationModalOpen: (isOpen: boolean) => void;
-  pagination: PaginationProps;
-  nextPage: () => Promise<void>;
-  prevPage: () => Promise<void>;
-};
+  setIsApplicationModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  pagination: Pagination;
+  setPagination: React.Dispatch<React.SetStateAction<Pagination>>;
+  nextPage: () => void;
+  prevPage: () => void;
+}
 
 
 export interface PaginationProps {

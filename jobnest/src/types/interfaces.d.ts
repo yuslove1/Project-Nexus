@@ -1,6 +1,8 @@
 export interface ButtonProps{
     btnStyle: string;
     btnText: string;
-    onBtnClick?: (id?: string | number ) => void | string | React.ReactElement;
+    disabled?: boolean;
+    type?: "button" | "submit" | "reset";
+    onBtnClick?: (e: React.FormEvent<HTMLFormElement>) => void | React.ReactElement;
   }
   
