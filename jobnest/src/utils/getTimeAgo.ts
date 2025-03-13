@@ -1,6 +1,6 @@
-export function getTimeAgo(posted_at : {posted_at : string}) {
+export function getTimeAgo(timeDay  : string|number|Date) {
     const now = new Date();
-    const postDate = new Date(posted_at);
+    const postDate = new Date(timeDay);
     const timeDiff = now.getTime() - postDate.getTime();
     const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
   
