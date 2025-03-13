@@ -1,23 +1,50 @@
 import { useContext, useEffect } from "react";
 import { FilterContext } from "@/contexts/FilterContext";
-import { JobContext } from "@/contexts/JobContext"; // Import the JobContext
+import { JobContext } from "@/contexts/JobContext";
 import JobCard from "@/components/JobCard";
 import HeadBadge from "@/components/Headbadge";
 
+
+// const SearchResult: React.FC = () => {
+//   const [filteredJobs, setFilteredJobs] = useState<Job[]>([]);
+
+//   useEffect(() => {
+//     const storedJobs = localStorage.getItem('filteredJobs');
+//     if (storedJobs) {
+//       setFilteredJobs(JSON.parse(storedJobs));
+//     } else {
+//       // Fetch filtered jobs if not found in local storage
+//       fetchFilteredJobs();
+//     }
+//   }, [fetchFilteredJobs]);
+
+//   return (
+//     <main>
+//       <HeadBadge />      
+//       <section className="container">
+//         {filteredJobs.map((job: Job) => (
+//           <JobCard key={job.id} job={job} />
+//         ))}
+//       </section>
+//     </main>
+//   );
+// };
+// export default SearchResult
+
+
+
 const SearchResult: React.FC = () => {
-  const { filteredJobs, filters } = useContext(FilterContext);
+  const { fetchFilteredJobs } = useContext(FilterContext);
   const { jobs } = useContext(JobContext);
 
   useEffect(() => {
-    if (filters.category || filters.location || filters.experience) {
-      filteredJobs();
-    }
-  }, [filters, filteredJobs]);
+    fetchFilteredJobs();
+  }, [fetchFilteredJobs]);
 
   return (
     <main>
       <HeadBadge />      
-      <section className="container">
+      <section className="container mx-auto">
         {jobs.map((job) => (
           <JobCard key={job.id} job={job} />
         ))}
@@ -25,23 +52,8 @@ const SearchResult: React.FC = () => {
     </main>
   );
 };
-// const SearchResult: React.FC = () => {
-//   const { filteredJobs } = useContext(FilterContext);
-//   const { jobs } = useContext(JobContext);
-
-//   useEffect(() => {
-//     filteredJobs();
-//   }, [filteredJobs]); // Will re-run when filters change
-
-//   return (
-//     <div>
-//       <JobList>
-//         {jobs.map((job) => (
-//           <JobCard key={job.id} job={job} />
-//         ))}
-//       </JobList>
-//     </div>
-//   );
-// };
 
 export default SearchResult;
+
+
+
