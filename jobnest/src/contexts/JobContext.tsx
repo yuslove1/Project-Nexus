@@ -1,13 +1,14 @@
 "use client";
 import { createContext, useState, useEffect, ReactNode, useCallback } from "react";
+import { JobContextType, Job, PaginationProps } from "@/types/job";
 import { jobService } from "@/services/jobs";
 
 // Create a context for the job data
 export const JobContext = createContext<JobContextType>({
   jobs: [],
   setJobs: () => {},
-  fetchJob: () => {},
-  fetchJobByCat: () => {},
+  fetchJobs: async () => {},
+  fetchJobByCat: async (): Promise<Job[]> => [],
   loading: false,
   error: null,
   selectedJob: null,
@@ -17,6 +18,10 @@ export const JobContext = createContext<JobContextType>({
   pagination: { count: 0, next: null, previous: null },
   nextPage: async () => {},
   prevPage: async () => {},
+
+  setLoading: () => {},
+  setError: () => {},
+  setPagination: () => {},
 });
 
 // Create a provider for the job context
@@ -30,7 +35,7 @@ export const JobProvider = ({ children }: { children: ReactNode }) => {
   const [pagination, setPagination] = useState<PaginationProps>({count: 0,next: null,previous: null,});
   
 
-  // Fetch jobs based on the filters
+  // Fetch jobs fetch all jobs
   const fetchJobs = useCallback(async (url?: string) => {
     try {
       setLoading(true);
@@ -49,25 +54,26 @@ export const JobProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
-
-  //fetch job using base on category selected
-    const fetchJobByCat = useCallback(async (id:string) => {
-      try {
-        setLoading(true);
-        setError(null);
-        const data = jobService.getCategoryJobs(id, 1);
-        setJobs(data.results);
-        setPagination({
-          count: data.count,
-          next: data.next,
-          previous: data.previous,
-        });
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "No job found");
-      } finally {
-        setLoading(false);
-      }
-    }, []);
+//fetch by categories
+  const fetchJobByCat = useCallback(async (id: string): Promise<Job[]> => {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await jobService.getCategoryJobs(id, 1);
+      setJobs(data.results);
+      setPagination({
+        count: data.count,
+        next: data.next,
+        previous: data.previous,
+      });
+      return data.results; // Return the fetched jobs as an array of Job objects
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "No job found");
+      return []; // Return an empty array or handle error case
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   //fetch the next page of jobs
   const nextPage = useCallback(async () => {
@@ -85,8 +91,11 @@ export const JobProvider = ({ children }: { children: ReactNode }) => {
 
   // Fetch jobs on initial render
   useEffect(() => {
-    fetchJobs();
-  }, [fetchJobs, fetchJobByCat]);
+    // Fetch jobs only if the jobs array is empty
+    if (jobs.length === 0) {
+      fetchJobs();
+    }
+  }, [fetchJobs, jobs]);
 
   return (
     <JobContext.Provider
@@ -99,8 +108,6 @@ export const JobProvider = ({ children }: { children: ReactNode }) => {
         error,
         setError,
         fetchJobByCat,
-        // filters,
-        // setFilters,
         selectedJob,
         setSelectedJob,
         isApplicationModalOpen,
