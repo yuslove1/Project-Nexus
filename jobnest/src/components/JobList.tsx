@@ -12,22 +12,22 @@ export const JobList = () => {
   const { jobs, loading, error, pagination, nextPage, prevPage } = useContext(JobContext);
   const {filters} = useContext(FilterContext);
   
+  console.log(jobs)
 
   // Check if any filters are active
   const isFilterActive = Boolean(
     filters.category || filters.location || filters.experience
   );
+  
   // Calculate current page and total pages
   const itemsPerPage = 10; // 
   const totalPages = Math.ceil(pagination.count / itemsPerPage);
-  const currentPage = pagination.next 
-    ? parseInt(new URL(pagination.next).searchParams.get('page') || '1', 10) - 1
-    : pagination.previous
+  const currentPage = pagination.next ? parseInt(new URL(pagination.next,).searchParams.get('page') || '1', 10) - 1 : pagination.previous
       ? parseInt(new URL(pagination.previous).searchParams.get('page') || '1', 10) + 1
       : 1;
 
   if (error) return <ErrorMessage message={error} />;
-  if (loading) return <LoadingSkeleton count={5} />;
+  if (loading) return <LoadingSkeleton />;
 
   return (
     <div>
