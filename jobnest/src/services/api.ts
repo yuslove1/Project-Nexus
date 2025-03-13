@@ -15,4 +15,34 @@ api.interceptors.request.use(config => {
   return config;
 });
 
-export default api; // Export the configured Axios instance
+export default api; 
+
+
+// import axios from 'axios';
+
+// const isDevelopment = process.env.NODE_ENV === 'development';
+// const baseURL = isDevelopment ? 'http://localhost:3000/api' : process.env.NEXT_PUBLIC_API_URL;
+
+// const api = axios.create({
+//   baseURL,
+//   headers: { 'Content-Type': 'application/json' },
+// });
+
+// if (isDevelopment) {
+//   // In development mode, use mock API endpoints
+//   api.interceptors.request.use((config) => {
+//     // You can add logic here to intercept the request and modify it if needed
+//     return config;
+//   });
+// } else {
+//   // In production mode, include the authorization token
+//   api.interceptors.request.use((config) => {
+//     const token = localStorage.getItem('token');
+//     if (token) {
+//       config.headers.Authorization = `Bearer ${token}`;
+//     }
+//     return config;
+//   });
+// }
+
+// export default api;
